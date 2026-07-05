@@ -62,6 +62,6 @@ jobs:
     - name: Finalizar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        TOKEN: ${{ c2b1aa827309cf54d530e20eb08c638b1097ed57 }}
+        SONAR_TOKEN: ${{ 4080595a8ea76bd7598861e50f9f35ccea34e152 }}
+      run: dotnet sonarscanner end /d:sonar.token="${{ 4080595a8ea76bd7598861e50f9f35ccea34e152 }}"
