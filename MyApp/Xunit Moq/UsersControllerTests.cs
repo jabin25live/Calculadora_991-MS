@@ -188,5 +188,15 @@ namespace MyApp.Api.Tests
             _userServiceMock.Verify(service => service.CreateAsync(user), Times.Once());
             _userServiceMock.Verify(service => service.GetAllAsync(), Times.Once());
         }
+
+        [Fact]
+        public async Task CreateAsync_ReturnsBadRequestResult_WhenUserIsNull()
+        {
+            // Act
+            var result = await _controller.CreateAsync(null!);
+
+            // Assert
+            Assert.IsType<BadRequestResult>(result);
+        }
     }
 }
