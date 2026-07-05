@@ -57,7 +57,7 @@ jobs:
 
     # 3. EJECUTAMOS LAS PRUEBAS apuntando al proyecto de tests real y recogiendo cobertura (Coverlet)
     - name: Ejecutar Pruebas
-      run: dotnet test MyApp/"Xunit Moq"/"Xunit Moq.csproj" --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      run: dotnet test MyApp/"Xunit Moq"/"Xunit Moq.csproj" --no-build --collect:"XPlat Code Coverage" --settings MyApp/MyApp.runsettings
 
     - name: Finalizar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'

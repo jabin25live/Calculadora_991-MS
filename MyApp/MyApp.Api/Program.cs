@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +13,5 @@ app.MapControllers();
 
 await app.RunAsync();
 
-[ExcludeFromCodeCoverage]
-public partial class Program { }
 
 
