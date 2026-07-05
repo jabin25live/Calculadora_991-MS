@@ -41,10 +41,10 @@ jobs:
     - name: Iniciar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'
       env:
-        TOKEN: ${{}}
-        SONAR_TOKEN: ${{}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
+        dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="$env:SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
 
     # 1. Restauramos ambos proyectos (la API y los Tests)
     # Al apuntar a la carpeta contenedora 'MyApp', .NET buscará todo lo que esté adentro
@@ -62,6 +62,7 @@ jobs:
     - name: Finalizar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'
       env:
-        TOKEN: ${{}}
-        SONAR_TOKEN: ${{}}
-      run: dotnet sonarscanner end /d:sonar.token="${{}}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: dotnet sonarscanner end /d:sonar.token="$env:SONAR_TOKEN"
+
