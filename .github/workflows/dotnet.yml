@@ -41,8 +41,8 @@ jobs:
     - name: Iniciar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        TOKEN: ${{}}
+        SONAR_TOKEN: ${{}}
       run: |
         dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
 
@@ -62,6 +62,6 @@ jobs:
     - name: Finalizar Análisis de SonarQube
       if: matrix.dotnet-version == '10.0.x'
       env:
-        TOKEN: ${{ c2b1aa827309cf54d530e20eb08c638b1097ed57 }}
-        SONAR_TOKEN: ${{ 4080595a8ea76bd7598861e50f9f35ccea34e152 }}
-      run: dotnet sonarscanner end /d:sonar.token="${{ 4080595a8ea76bd7598861e50f9f35ccea34e152 }}"
+        TOKEN: ${{}}
+        SONAR_TOKEN: ${{}}
+      run: dotnet sonarscanner end /d:sonar.token="${{}}"
