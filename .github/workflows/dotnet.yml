@@ -1,0 +1,67 @@
+name: .NET 10 Windows Service CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+env:
+  ACTIONS_NODE_JS_FORCED_VERSION: 'node24'
+  NODE_NO_WARNINGS: 1
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x', '9.0.x', '10.0.x']
+
+    steps:
+    - name: Checkout de código
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Requerido por SonarQube para un mejor análisis e historial de cambios
+
+    - name: Configurar JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Configurar .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Instalar SonarScanner para .NET
+      if: matrix.dotnet-version == '10.0.x'
+      run: dotnet tool install --global dotnet-sonarscanner
+
+    - name: Iniciar Análisis de SonarQube
+      if: matrix.dotnet-version == '10.0.x'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
+
+    # 1. Restauramos ambos proyectos (la API y los Tests)
+    # Al apuntar a la carpeta contenedora 'MyApp', .NET buscará todo lo que esté adentro
+    - name: Restaurar Dependencias
+      run: dotnet restore MyApp/
+
+    # 2. Compilamos toda la solución/proyectos dentro de MyApp
+    - name: Compilar Proyecto
+      run: dotnet build MyApp/ --no-restore 
+
+    # 3. EJECUTAMOS LAS PRUEBAS apuntando al proyecto de tests real y recogiendo cobertura (Coverlet)
+    - name: Ejecutar Pruebas
+      run: dotnet test MyApp/"Xunit Moq"/"Xunit Moq.csproj" --no-build --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+
+    - name: Finalizar Análisis de SonarQube
+      if: matrix.dotnet-version == '10.0.x'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
