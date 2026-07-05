@@ -93,4 +93,4 @@ jobs:
 
     # 3. EJECUTAMOS LAS PRUEBAS apuntando al proyecto de tests real
     - name: Ejecutar Pruebas
-      run: dotnet test MyApp/MyApp.Api.Tests/MyApp.Api.Tests.csproj --no-build
+      run: dotnet test MyApp/"Xunit Moq"/"Xunit Moq.csproj" --no-build

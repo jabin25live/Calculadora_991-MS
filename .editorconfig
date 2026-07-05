@@ -1,0 +1,5 @@
+root = true
+
+[*.cs]
+# Desactivar la advertencia de correspondencia de espacio de nombres y carpetas (IDE0130)
+dotnet_diagnostic.IDE0130.severity = none
