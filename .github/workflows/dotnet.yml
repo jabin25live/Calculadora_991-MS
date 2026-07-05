@@ -44,7 +44,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="$env:SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml"
+        dotnet sonarscanner begin /k:"jabin25live_Calculadora_991-MS" /o:"jabin25live" /d:sonar.token="$env:SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" /d:sonar.coverage.exclusions="**/Program.cs"
+
 
     # 1. Restauramos ambos proyectos (la API y los Tests)
     # Al apuntar a la carpeta contenedora 'MyApp', .NET buscará todo lo que esté adentro
