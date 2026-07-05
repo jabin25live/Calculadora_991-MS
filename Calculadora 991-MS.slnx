@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="Calculadora 991-MS.csproj" />
+  <Project Path="MyApp/MyApp.Api/MyApp.Api.csproj" />
+  <Project Path="MyApp/Xunit Moq/Xunit Moq.csproj" />
 </Solution>
