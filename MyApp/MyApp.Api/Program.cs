@@ -11,4 +11,5 @@ app.MapGet("/", () => "API de Usuarios activa. Accede a '/api/users' para consul
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
+
