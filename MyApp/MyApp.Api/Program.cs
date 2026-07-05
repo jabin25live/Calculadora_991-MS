@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,4 +13,8 @@ app.MapGet("/", () => "API de Usuarios activa. Accede a '/api/users' para consul
 app.MapControllers();
 
 await app.RunAsync();
+
+[ExcludeFromCodeCoverage]
+public partial class Program { }
+
 
