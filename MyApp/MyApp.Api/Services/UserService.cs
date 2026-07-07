@@ -8,8 +8,8 @@ namespace MyApp.Api.Services
 {
     public class UserService : IUserService
     {
-        private readonly List<User> _users = new();
-        private readonly object _lock = new();
+        private readonly List<User> _users = [];
+        private readonly System.Threading.Lock _lock = new();
         private int _nextId = 1;
 
         public Task<IEnumerable<User>> GetAllAsync()
@@ -17,7 +17,7 @@ namespace MyApp.Api.Services
             lock (_lock)
             {
                 // Devolvemos una copia de la lista para evitar problemas de modificación concurrente
-                return Task.FromResult<IEnumerable<User>>(_users.ToList());
+                return Task.FromResult<IEnumerable<User>>([.. _users]);
             }
         }
 
@@ -34,10 +34,7 @@ namespace MyApp.Api.Services
         {
             lock (_lock)
             {
-                if (user == null)
-                {
-                    throw new ArgumentNullException(nameof(user));
-                }
+                ArgumentNullException.ThrowIfNull(user);
 
                 user.Id = _nextId++;
                 _users.Add(user);

@@ -95,10 +95,10 @@ namespace MyApp.Api.Tests
         }
 
         [Fact]
-        public async Task CreateAsync_NullUser_ThrowsArgumentNullException()
+        public Task CreateAsync_NullUser_ThrowsArgumentNullException()
         {
             // Act & Assert
-            await Assert.ThrowsAsync<System.ArgumentNullException>(() => _service.CreateAsync(null!));
+            return Assert.ThrowsAsync<System.ArgumentNullException>(() => _service.CreateAsync(null!));
         }
     }
 }
