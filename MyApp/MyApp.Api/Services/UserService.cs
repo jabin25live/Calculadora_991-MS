@@ -4,6 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using MyApp.Api.Models;
 
+// =================================================================================
+// IMPLEMENTACIÓN CONCRETA DE TDD (Test-Driven Development)
+// Esta clase fue desarrollada para satisfacer las pruebas en UserServiceTests.cs
+// siguiendo la fase Green (Verde) y posterior Refactorización del ciclo TDD.
+// =================================================================================
 namespace MyApp.Api.Services
 {
     public class UserService : IUserService

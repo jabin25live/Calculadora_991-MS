@@ -5,6 +5,11 @@ using MyApp.Api.Models;
 using MyApp.Api.Services;
 using Xunit;
 
+// =================================================================================
+// PRUEBAS DE TDD (Test-Driven Development)
+// Estas pruebas unitarias fueron creadas EN PRIMER LUGAR (Fase Red) antes de escribir
+// la implementación en UserService.cs para asegurar el ciclo Red-Green-Refactor.
+// =================================================================================
 namespace MyApp.Api.Tests
 {
     public class UserServiceTests
