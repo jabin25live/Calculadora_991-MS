@@ -1,5 +1,3 @@
-#pragma warning disable IDE0130 // El espacio de nombres no coincide con la estructura de carpetas
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
