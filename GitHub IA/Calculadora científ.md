@@ -35,21 +35,16 @@ llamado exactamente una vez
 Una vez halla terminado
 haremos esto:
 
-Competencias a Desarrollar
+### Competencias Desarrolladas
 
-Diseño de pruebas unitarias con xUnit
+- [x] **Diseño de pruebas unitarias con xUnit:** Implementadas 17 pruebas unitarias estructuradas repartidas entre la controladora (`UsersControllerTests`) y el servicio (`UserServiceTests`).
+- [x] **Aplicación del patrón Arrange-Act-Assert:** Todas las pruebas unitarias siguen de manera estricta y visual el patrón Arrange-Act-Assert.
+- [x] **Uso de mocks y dobles de prueba:** Implementación de simulaciones con `Moq` sobre la interfaz `IUserService` para aislar el controlador.
+- [x] **Medición de cobertura con Coverlet:** Cobertura de código calculada mediante `coverlet.collector` y configurada a través de un archivo `.runsettings`.
+- [x] **Análisis estático con SonarQube:** Proyecto completamente integrado en SonarQube Cloud, con 0 problemas abiertos, calificación A en seguridad y Quality Gate aprobado (`Passed`).
+- [x] **Implementación de pipelines CI/CD:** Configurado y funcionando en GitHub Actions (`.github/workflows/dotnet.yml`), con automatización de compilación, ejecución de pruebas con cobertura y análisis estático de código.
+- [x] **Desarrollo guiado por pruebas (TDD):** Clase concreta `UserService` diseñada e implementada de inicio a fin bajo el ciclo Red-Green-Refactor.
 
-Aplicación del patrón Arrange-Act-Assert
-
-Uso de mocks y dobles de prueba
-
-Medición de cobertura con Coverlet
-
-Análisis estático con SonarQube
-
-Implementación de pipelines CI/CD
-
-Desarrollo guiado por pruebas (TDD)
 
 Ejemplo del YAML que necesito:
 
